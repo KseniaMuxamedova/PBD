@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование компании {{ company.name }}</title>
+</head>
+</head>
+<body>
+    {% include '_menu.html' %}
+    <form method="post">
+        {{ form.name.label }}
+        {{ form.name }}
+        {% if form.name.errors %}
+        {{ form.name.errors | join(', ') }}
+        {% endif %}
+        {{ form.pin.label }}
+        {{ form.pin }}
+        {% if form.pin.errors %}
+        {{ form.name.errors | join(', ') }}
+        {% endif %}
+        {{ form.button_save }}
+        {% if company.inn %}
+                   {{ form.button_delete }}
+        {% endif %}
+    </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>

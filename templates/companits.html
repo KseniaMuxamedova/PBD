@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Компании</title>
+</head>
+<body>
+    {% include '_menu.html' %}
+    <h1>{{ title }}</h1>
+    <h>Количество компаний: {{ count }}</h>
+    </br>
+    <table>
+        <thead>
+            <tr>
+                <th style="width:20%;">
+                    <form action="searchcompanits" method="post">
+                        <input name="q" placeholder="Искать здесь..." type="search">
+                        <button type="submit">Поиск</button>
+                    </form>
+                </th>
+            </tr>
+        </thead>
+        </table>
+<ul>
+    {% for c in companies %}
+        <li><a href="{{ url_for('company', inn=c.inn) }}">{{ c.name }}</a></li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

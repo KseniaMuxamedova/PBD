@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование модели</title>
+</head>
+</head>
+<body>
+    {% include '_menu.html' %}
+    <form method="post">
+        <table>
+            <tr>
+                <td>
+                    {{ form.pattern.label }}
+                    {{ form.pattern }}
+                </td>
+                <td>
+                    {% if form.pattern.errors %}
+                    {{ form.pattern.errors | join(', ') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.sizes.label }}
+                    {{ form.sizes }}
+                </td>
+                <td>
+                    {% if form.sizes.errors %}
+                    {{ form.sizes.errors | join(', ') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.consumption.label }}
+                    {{ form.consumption }}
+                </td>
+                <td>
+                    {% if form.consumption.errors %}
+                    {{ form.consumption.errors | join(', ') }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.pin.label }}
+                    {{ form.pin }}
+                </td>
+                <td>
+                    {% if form.pin.errors %}
+                    {{ form.pin.errors | join(', ') }}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        {{ form.button_save }}
+        {% if model.id %}
+                   {{ form.button_delete }}
+        {% endif %}
+    </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+<a href="{{ url_for('company', inn=model.company_INN)}}">К компании</a>
+</body>
+</html>

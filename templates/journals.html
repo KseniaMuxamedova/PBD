@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Журналы</title>
+</head>
+<body>
+    {% include '_menu.html' %}
+    <h1>{{ title }}</h1>
+     <form action="filterjournals" method="post">
+                        <input name="f" placeholder="Дата издания" type="date">
+                        <button type="submit">Отфильтровать</button>
+                    </form>
+    <h>Количество журналов: {{ count }}</h>
+     <h2> <a href="{{ url_for('edit_journal', id=0) }}">Новый журнал</a></h2>
+    <table>
+        <thead>
+<!--            <tr>-->
+<!--                <th>ID</th>-->
+                <th>Название</th>
+                <th>Дата выпуска</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for n in journals %}
+            <tr>
+                <td>
+                     <a href="{{ url_for('edit_journal', id=n.id) }}">{{ n.name}}</a>
+                </td>
+                <td>
+                    <a>{{ n.date_of_issue}}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
